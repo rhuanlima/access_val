@@ -2,8 +2,29 @@ from django.contrib import admin
 
 from acessos.models import Sistema, Acesso, Area, SystemInstance
 
-#admin.site.register(Sistema)
+import datetime
+from django.contrib.admin.models import LogEntry, ADDITION, CHANGE
 
+
+class MoniterLog(admin.ModelAdmin):
+    list_display=(
+        'action_time',
+        'user',
+        'content_type',
+        'object_repr',
+        'change_message',
+        'action_flag'
+    )
+    list_filter=[
+        'action_time',
+        'user',
+        'content_type'
+    ]
+    ordering=('-action_time',)
+
+admin.site.register(LogEntry, MoniterLog)
+
+admin.site.register(Sistema)
 
 @admin.register(SystemInstance)
 class SystemInstanceAdmin(admin.ModelAdmin):
@@ -12,7 +33,9 @@ class SystemInstanceAdmin(admin.ModelAdmin):
 
 class SystemInstanceInline(admin.TabularInline):
     model = SystemInstance
-    list_display = ('dsSistema', 'dsStatus')
+    list_display = ('dsSistema', 'dsObs', 'dsStatus')
+    verbose_name = "Acesso"
+    verbose_name_plural = "Meus acessos"
     
 
 
@@ -20,13 +43,13 @@ class SystemInstanceInline(admin.TabularInline):
 
 @admin.register(Acesso)
 class AcessoAdmin(admin.ModelAdmin):
-    list_display = ('dsMatricula', 'dsUsuario',
+    list_display = ('dsMatricula', 'dsUsuario', 'dsUserEmail',
                     'dsArea', 'dtUpdate')
     list_filter = ('dsArea', 'dtUpdate')
 
     fieldsets = (
         ('Usuário', {
-            'fields': ('dsMatricula', 'dsUsuario', 'dsArea')
+            'fields': ('dsMatricula', 'dsUsuario', 'dsUserEmail', 'dsArea')
         }),
     )
     inlines = [SystemInstanceInline]
