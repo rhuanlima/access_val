@@ -3,6 +3,23 @@ from django.urls import reverse # Used to generate URLs by reversing the URL pat
 from django.db import models
 
 
+class Avaliacao(models.Model):
+    dsPeriodo = models.IntegerField(
+        'Período de avaliação', help_text='AAAAMM', unique=True)
+    lst_acao = (
+        (True, 'Ativo'),
+        (False, 'Fechado'),
+    )
+    blStatusPerido = models.BooleanField(
+        'Período Ativo?', help_text='Ativo/Fechado', default=False)
+
+    def __str__(self):
+        return self.dsPeriodo
+
+
+
+
+####
 class Sistema(models.Model):
     dsNome = models.CharField(
         max_length=100, help_text='Insira um sistema aqui .. (ex: SAP HANA)', unique = True)
@@ -40,6 +57,13 @@ class Acesso(models.Model):
     def get_absolute_url(self):
         return reverse('acessos', args=[str(self.dsMatricula)])
 
+    def get_profile(self):
+        profile = ''
+        for system in list(SystemInstance.objects.filter(dsMatricula_id=self.id)):
+            profile = profile + f"sistema: {system}, "
+        return profile
+
+
 
 class Area(models.Model):
     """Model representing an author."""
@@ -73,6 +97,9 @@ class SystemInstance(models.Model):
         ordering = ['dsSistema']
 
     def __str__(self):
-        return f'{self.dsSistema.dsNome} ({self.dsMatricula})'
+    #     return f'{self.dsSistema.dsNome} ({self.dsMatricula})'
+
+    # def get_nome_sistema(self):
+        return f'{self.dsSistema.dsNome}'
 
 

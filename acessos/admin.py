@@ -44,7 +44,7 @@ class SystemInstanceInline(admin.TabularInline):
 @admin.register(Acesso)
 class AcessoAdmin(admin.ModelAdmin):
     list_display = ('dsMatricula', 'dsUsuario', 'dsUserEmail',
-                    'dsArea', 'dtUpdate')
+                    'dsArea', 'dtUpdate', 'get_profile')
     list_filter = ('dsArea', 'dtUpdate')
 
     fieldsets = (
