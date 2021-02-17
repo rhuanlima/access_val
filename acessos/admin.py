@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from acessos.models import Sistema, Acesso, Area, SystemInstance
+from acessos.models import Sistema, Acesso, Area, SystemInstance, CicloAvaliacao
 
 import datetime
 from django.contrib.admin.models import LogEntry, ADDITION, CHANGE
@@ -26,6 +26,7 @@ admin.site.register(LogEntry, MoniterLog)
 
 admin.site.register(Sistema)
 
+admin.site.register(CicloAvaliacao)
 @admin.register(SystemInstance)
 class SystemInstanceAdmin(admin.ModelAdmin):
     pass
