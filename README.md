@@ -9,3 +9,13 @@ django-admin startproject access_val .
 python3 manage.py startapp acessos
 python manage.py runserver
 ```
+
+Usa##ndo Docker-compose
+
+```
+docker-compose build
+docker-compose run
+docker-compose run web bash
+python manage.py migrate
+python manage.py createsuperuser
+```
