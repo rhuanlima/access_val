@@ -15,7 +15,7 @@ Usa##ndo Docker-compose
 ```
 docker-compose build
 docker-compose run
-docker-compose run web bash
+docker-compose run app bash
 python manage.py migrate
 python manage.py createsuperuser
 ```

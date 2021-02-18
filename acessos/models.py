@@ -68,9 +68,6 @@ class SystemInstance(models.Model):
         Sistema, verbose_name='Sistemas', help_text='Selecione os sistemas', on_delete=models.PROTECT, null=True)
     dsMatricula = models.ForeignKey(
         Acesso, verbose_name='Matricula', on_delete=models.PROTECT, null=True)
-    dsCiclo = models.ForeignKey(
-        CicloAvaliacao, verbose_name='Ciclo de avaliação', on_delete=models.PROTECT, null=True
-    )
     lst_acao= (
         ('1','Manter'),
         ('0', 'Remover'),
@@ -78,6 +75,7 @@ class SystemInstance(models.Model):
     dsStatus = models.CharField(
         'Status', max_length=1, help_text='Deseja manter o acesso ativo?', choices=lst_acao, default='1'
     )
+
 
     class Meta:
         ordering = ['dsSistema']
