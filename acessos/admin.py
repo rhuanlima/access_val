@@ -22,12 +22,12 @@ class MoniterLog(admin.ModelAdmin):
     ]
     ordering=('-action_time',)
 
-admin.site.register(LogEntry, MoniterLog)
+#admin.site.register(LogEntry, MoniterLog)
 
-admin.site.register(Sistema)
+#admin.site.register(Sistema)
 
-admin.site.register(CicloAvaliacao)
-@admin.register(SystemInstance)
+#admin.site.register(CicloAvaliacao)
+#@admin.register(SystemInstance)
 class SystemInstanceAdmin(admin.ModelAdmin):
     pass
 

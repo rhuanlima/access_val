@@ -19,3 +19,11 @@ docker-compose run app bash
 python manage.py migrate
 python manage.py createsuperuser
 ```
+docker run -d \
+    --name db_p \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_PASSWORD=postgres \
+    -e POSTGRES_DB=postgres \
+    -p 5432:5432 \
+    -v /home/rhuan/git_project/access_val/db:/var/lib/postgresql/data:z \
+    postgres
