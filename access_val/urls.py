@@ -9,6 +9,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path('grappelli/', include('grappelli.urls')),  # grappelli URLS
     path('admin/', admin.site.urls),
     path('acessos/', include('acessos.urls')),
     path('', RedirectView.as_view(url='/acessos/')),

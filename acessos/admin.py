@@ -60,3 +60,6 @@ class AcessoAdmin(admin.ModelAdmin):
 admin.site.register(Area)
 #admin.site.register(SystemInstance)
 
+
+
+

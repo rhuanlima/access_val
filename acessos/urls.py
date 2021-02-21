@@ -1,7 +1,8 @@
 from django.urls import path
-from acessos import views
-
+from .views import index
+from .views import acessos_new
 
 urlpatterns = [
-    path('', views.index, name='index')
+    path('', index, name='index'),
+    path('novo/', acessos_new, name='acessos_new')
 ]
