@@ -10,7 +10,7 @@ python3 manage.py startapp acessos
 python manage.py runserver
 ```
 
-Usa##ndo Docker-compose
+## Usando Docker-compose
 
 ```
 docker-compose build
