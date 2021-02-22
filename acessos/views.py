@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
-from .models import Acesso
+from .models import Acesso, Area
 from django.template import loader
 from .forms import AcessosForm
 from django.contrib.auth.decorators import login_required
@@ -39,3 +39,9 @@ def acessos_edit(request, id):
         form.save_m2m()  # adiciona os itens
         return redirect('acessos_list')
     return render(request, 'acessos_form.html', {'form': form})
+
+
+def lista_areas(request, id):
+    area = get_object_or_404(Area, pk=id)
+    acessos = Acesso.objects.filter(dsArea=area)
+    return render(request, 'lista_areas.html', {'acessos': acessos})
