@@ -1,19 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{% url 'acessos_new' %}" method="POST">
-        {% csrf_token %}
-        {{ form }}
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block title %}
+Novo relatório de acessos
+{% endblock %}
 
+{% block navbar%}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'acessos_list'%}">Lista de Acessos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'acessos_new'%}">Novo Relatório</a>
+    </li>
+    <!-- <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    </li> -->
 
-        <button type="submit">Enviar</button>
+{% endblock %}
+{% block main %}
+        <div class="p-5 rounded">
+            <h1>Novo formulário de acesso</h1>            
+            <form method="POST" class="form">
+                <div class="mb-3">
 
-    </form>
-</body>
-</html>
+                    {% csrf_token %}
+                    {{ form|bootstrap }}
+                    Adicionar o botão aqui  e atualizar a tela
+            
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary">Salvar</button>
+        
+            </form>
+        </div>
+{% endblock %}

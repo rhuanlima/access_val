@@ -1,9 +1,11 @@
+from django.shortcuts import render
 from django.contrib import admin
 
-from acessos.models import Sistema, Acesso, Area, SystemInstance, CicloAvaliacao
+from acessos.models import Sistema, Acesso, Area
 
 import datetime
 from django.contrib.admin.models import LogEntry, ADDITION, CHANGE
+
 
 
 class MoniterLog(admin.ModelAdmin):
@@ -22,43 +24,29 @@ class MoniterLog(admin.ModelAdmin):
     ]
     ordering=('-action_time',)
 
-#admin.site.register(LogEntry, MoniterLog)
-
-#admin.site.register(Sistema)
-
-#admin.site.register(CicloAvaliacao)
-#@admin.register(SystemInstance)
-class SystemInstanceAdmin(admin.ModelAdmin):
-    pass
-
-
-class SystemInstanceInline(admin.TabularInline):
-    model = SystemInstance
-    list_display = ('dsSistema', 'dsObs', 'dsStatus')
-    verbose_name = "Acesso"
-    verbose_name_plural = "Meus acessos"
-    
-
-
+admin.site.register(LogEntry, MoniterLog)
+admin.site.register(Sistema)
+admin.site.register(Area)
 #admin.site.register(Acesso)
+
+
 
 @admin.register(Acesso)
 class AcessoAdmin(admin.ModelAdmin):
     list_display = ('dsMatricula', 'dsUsuario', 'dsUserEmail',
-                    'dsArea', 'dtUpdate', 'get_profile')
+                    'dsArea', 'dtUpdate', 'get_access')
     list_filter = ('dsArea', 'dtUpdate')
 
     fieldsets = (
         ('Usuário', {
-            'fields': ('dsMatricula', 'dsUsuario', 'dsUserEmail', 'dsArea')
+            'fields': ('dsMatricula', 'dsUsuario', 'dsUserEmail', 'dsArea', 'dsSistema')
         }),
     )
-    inlines = [SystemInstanceInline]
+    filter_horizontal = ['dsSistema']
 
 
 
-admin.site.register(Area)
-#admin.site.register(SystemInstance)
+
 
 
 

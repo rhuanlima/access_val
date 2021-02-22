@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'acessos.apps.AcessosConfig',
+    'acessos.apps.AcessosConfig', 
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,8 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 
 GRAPPELLI_ADMIN_TITLE = "Gestor de Acessos - MIS"
+
+
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/acessos/'

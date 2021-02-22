@@ -1,17 +1,21 @@
 from django.forms import ModelForm
-from .models import Sistema, Acesso, Area, SystemInstance, CicloAvaliacao
+from .models import Sistema, Acesso, Area
+from django import forms
 
 
-
-class SystemInstanceInline(ModelForm):
-    model = SystemInstance
-    list_display = ('dsSistema', 'dsObs', 'dsStatus')
-    verbose_name = "Acesso"
-    verbose_name_plural = "Meus acessos"
+class SistemaInline(forms.ModelMultipleChoiceField):
+    model = Sistema
+    list_display = ('dsNome', 'dsObs')
 
 class AcessosForm(ModelForm):
     class Meta:
         model = Acesso
-        fields = ('dsMatricula', 'dsUsuario', 'dsUserEmail', 'dsArea')
+        fields = ('dsMatricula', 'dsUsuario',
+                  'dsUserEmail', 'dsArea', 'dsSistema')
+        exclude = ('m2mthroughfield',)
     
-        inlines = [SystemInstanceInline]
+    dsSistema = SistemaInline(
+        queryset=Sistema.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
+
