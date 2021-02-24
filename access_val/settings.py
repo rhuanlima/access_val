@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'access_val.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-if os.getenv('AMBIETNE') == 'HML':
+if os.getenv('AMBIENTE') == 'HML':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
