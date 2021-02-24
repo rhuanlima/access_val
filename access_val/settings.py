@@ -93,12 +93,7 @@ if os.getenv('AMBIENTE') == 'HML':
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': os.getenv('DATABASE_URL'),
-            'PORT': '5432',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2'
         }
     }
 
