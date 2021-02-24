@@ -9,12 +9,13 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import django_heroku
 from pathlib import Path
 from dotenv import load_dotenv
 import os
 load_dotenv(verbose=True)
 load_dotenv(dotenv_path='.env')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -143,3 +144,6 @@ GRAPPELLI_ADMIN_TITLE = "Gestor de Acessos - MIS"
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/acessos/'
+
+
+django_heroku.settings(locals())
