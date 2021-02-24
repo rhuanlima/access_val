@@ -9,10 +9,12 @@ colorama==0.4.3
 contextlib2==0.6.0
 distlib==0.3.1
 distro==1.4.0
+dj-database-url==0.5.0
 Django==3.1.5
 django-bootstrap-form==3.4
 django-bootstrap4==2.3.1
 django-grappelli==2.14.3
+django-heroku==0.3.1
 filelock==3.0.12
 gunicorn==20.0.4
 html5lib==1.0.1
@@ -41,3 +43,4 @@ urllib3==1.25.8
 virtualenv==20.4.2
 virtualenv-clone==0.5.4
 webencodings==0.5.1
+whitenoise==5.2.0
