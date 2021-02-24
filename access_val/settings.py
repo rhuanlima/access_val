@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import django_heroku
+
 from pathlib import Path
 from dotenv import load_dotenv
 import os
@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['localhost', 'appmis.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -94,7 +94,8 @@ if os.getenv('AMBIENTE') == 'HML':
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2'
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
         }
     }
 
@@ -145,5 +146,3 @@ GRAPPELLI_ADMIN_TITLE = "Gestor de Acessos - MIS"
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/acessos/'
 
-
-django_heroku.settings(locals())
