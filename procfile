@@ -1,1 +1,1 @@
-web: gunicorn access_val.wsgi
+web: python manage.py runserver 0.0.0.0:$PORT --noreload
