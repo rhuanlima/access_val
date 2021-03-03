@@ -2,7 +2,7 @@ FROM python:3.8
 ENV SECRET_KEY ^pgnbyclrl9+r&l78uu=ca$m_bt4yv-i8acvvtjvk*$wv7w11-
 ENV DEBUG True
 ENV DB_HOST db
-ENV AMBIENTE PRD
+ENV AMBIENTE docker
 ENV PYTHONUNBUFFERED=1
 RUN mkdir /access_val
 WORKDIR /access_val
