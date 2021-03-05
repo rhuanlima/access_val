@@ -41,10 +41,10 @@ class AcessoAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Usuário', {
-            'fields': ('dsMatricula', 'dsUsuario', 'dsUserEmail', 'dsArea', 'dsSistema', 'dsRede', 'dsSistemaExterno')
+            'fields': ('dsMatricula', 'dsUserWeb', 'dsUsuario', 'dsUserEmail', 'dsArea', 'dsSistema', 'dsRede', 'dsSistemaExterno')
         }),
     )
-    filter_horizontal = ['dsSistema', 'dsRede', 'dsSistemaExterno']
+    filter_horizontal = ['dsSistema', 'dsSistemaExterno', 'dsRede']
 
 
 

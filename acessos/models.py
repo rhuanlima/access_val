@@ -39,11 +39,11 @@ class Acesso(models.Model):
         'Area', verbose_name='Area', on_delete=models.PROTECT, null=True)
     dsUserEmail = models.EmailField('Email', max_length=254)
     dtUpdate = models.DateTimeField(verbose_name = 'Última alteração',auto_now=True)
-    dsSistema = models.ManyToManyField(Sistema, verbose_name='Acessos internos', blank=True)
+    dsSistema = models.ManyToManyField(Sistema, verbose_name='Sistemas internos', blank=True)
     dsRede = models.ManyToManyField(
         Rede, verbose_name='Pastas de rede', blank=True)
     dsSistemaExterno = models.ManyToManyField(
-        SistemaExterno, verbose_name='Acessos externos', blank=True)
+        SistemaExterno, verbose_name='Sistemas externos', blank=True)
     def __str__(self):
         return self.dsUsuario
 
