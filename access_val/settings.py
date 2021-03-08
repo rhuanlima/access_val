@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['.ngrok.io','localhost']
+ALLOWED_HOSTS = ['.ngrok.io', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'acessos.apps.AcessosConfig', 
+    'acessos.apps.AcessosConfig',
     'bootstrapform',
 ]
 
@@ -141,12 +141,6 @@ USE_TZ = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-
-
 GRAPPELLI_ADMIN_TITLE = "Gestor de Acessos - MIS"
-
-
-
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/acessos/'
-

@@ -15,7 +15,7 @@ def index(request):
 @login_required
 def acessos_list(request):
     acessos = Acesso.objects.all()
-    return render(request, 'acessos_list.html', {'acessos':acessos})
+    return render(request, 'acessos_list.html', {'acessos': acessos})
 
 
 @login_required
@@ -24,9 +24,9 @@ def acessos_new(request):
     if form.is_valid():
         list_form = form.save(commit=False)
         list_form.save()  # grava sem os itens
-        form.save_m2m() #adiciona os itens
+        form.save_m2m() # adiciona os itens
         return redirect('acessos_list')
-    return render(request, 'acessos_form.html', {'form':form})
+    return render(request, 'acessos_form.html', {'form': form})
 
 
 @login_required

@@ -1,15 +1,12 @@
 from django.shortcuts import render
 from django.contrib import admin
-
 from acessos.models import Sistema, Acesso, Area, Rede, SistemaExterno
-
 import datetime
 from django.contrib.admin.models import LogEntry, ADDITION, CHANGE
 
 
-
 class MoniterLog(admin.ModelAdmin):
-    list_display=(
+    list_display = (
         'action_time',
         'user',
         'content_type',
@@ -17,20 +14,20 @@ class MoniterLog(admin.ModelAdmin):
         'change_message',
         'action_flag'
     )
-    list_filter=[
+    list_filter = [
         'action_time',
         'user',
         'content_type'
     ]
-    ordering=('-action_time',)
+    ordering = ('-action_time',)
+
 
 admin.site.register(LogEntry, MoniterLog)
 admin.site.register(Sistema)
 admin.site.register(Rede)
 admin.site.register(SistemaExterno)
 admin.site.register(Area)
-#admin.site.register(Acesso)
-
+# admin.site.register(Acesso)
 
 
 @admin.register(Acesso)
@@ -41,15 +38,8 @@ class AcessoAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Usuário', {
-            'fields': ('dsMatricula', 'dsUserWeb', 'dsUsuario', 'dsUserEmail', 'dsArea', 'dsSistema', 'dsRede', 'dsSistemaExterno')
+            'fields': ('dsMatricula', 'dsUserWeb', 'dsUsuario', 'dsUserEmail',
+                       'dsArea', 'dsSistema', 'dsSistemaExterno', 'dsRede')
         }),
     )
     filter_horizontal = ['dsSistema', 'dsSistemaExterno', 'dsRede']
-
-
-
-
-
-
-
-

@@ -3,7 +3,7 @@ from django.urls import reverse # Used to generate URLs by reversing the URL pat
 from django.db import models
 
 class Sistema(models.Model):
-    dsNome = models.CharField('Nome do sistema:',
+    dsNome = models.CharField('Nome do Sistema:',
         max_length=100, help_text='Insira um sistema aqui .. (ex: SAP HANA)', unique = True)
     dsObs = models.CharField('Observações sobre os Acessos:',
                              help_text='Informações sobre como cancelar/solicitar o acesso', max_length=500, null=True)
@@ -12,7 +12,7 @@ class Sistema(models.Model):
 
 
 class SistemaExterno(models.Model):
-    dsNome = models.CharField('Nome do sistema exteno:',
+    dsNome = models.CharField('Nome do Sistema Exteno:',
         max_length=100, help_text='Insira um sistema aqui .. (ex: SAP HANA)', unique=True)
     dsLink = models.CharField('Link de acesso:',
         max_length=200, help_text='Http://...', unique=True)
@@ -21,29 +21,27 @@ class SistemaExterno(models.Model):
     def __str__(self):
         return self.dsNome
 class Rede(models.Model):
-    dsNome = models.CharField('Nome da pasta:',
-        max_length=100, help_text='Insira uma pasta .. (ex: 13_MIS)', unique=True)
-    dsCaminho = models.CharField('Caminho da pasta:',
+    dsCaminho = models.CharField('Caminho da Pasta:',
         max_length=100, help_text='Insira o caminho completo', unique=True)
-    dsObs = models.CharField('Observações sobre os Acessos:',
+    dsObs = models.CharField('Observações sobre os diretório:',
                              help_text='Informações sobre como cancelar/solicitar o acesso', max_length=500, null=True)
     def __str__(self):
-        return self.dsNome
+        return self.dsCaminho
 
 class Acesso(models.Model):
-    dsMatricula = models.BigIntegerField('Matricula', unique=True)
+    dsMatricula = models.CharField('Matricula', max_length=10, unique=True)
     dsUserWeb = models.CharField(
-        'Usuário de rede', max_length=100, unique=True)
+        'Usuário de Rede', max_length=100, unique=True)
     dsUsuario = models.CharField('Nome', max_length=100)
     dsArea = models.ForeignKey(
         'Area', verbose_name='Area', on_delete=models.PROTECT, null=True)
     dsUserEmail = models.EmailField('Email', max_length=254)
     dtUpdate = models.DateTimeField(verbose_name = 'Última alteração',auto_now=True)
-    dsSistema = models.ManyToManyField(Sistema, verbose_name='Sistemas internos', blank=True)
+    dsSistema = models.ManyToManyField(Sistema, verbose_name='Sistemas Internos', blank=True)
     dsRede = models.ManyToManyField(
-        Rede, verbose_name='Pastas de rede', blank=True)
+        Rede, verbose_name='Pastas de Rede', blank=True)
     dsSistemaExterno = models.ManyToManyField(
-        SistemaExterno, verbose_name='Sistemas externos', blank=True)
+        SistemaExterno, verbose_name='Sistemas Externos', blank=True)
     def __str__(self):
         return self.dsUsuario
 
