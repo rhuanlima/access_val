@@ -11,10 +11,10 @@ admin.autodiscover()
 
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # grappelli URLS
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin_site'),
     path('acessos/', include('acessos.urls')),
-    path('login/', RedirectView.as_view(url='/admin/login/?next=/acessos/')),
-    path('', RedirectView.as_view(url='/acessos/')),
+    path('login/', RedirectView.as_view(url='/admin/login/?next=/acessos/list')),
+    path('', RedirectView.as_view(url='/acessos/list')),
     
 ]
 

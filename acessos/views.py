@@ -14,8 +14,9 @@ def index(request):
 
 @login_required
 def acessos_list(request):
-    acessos = Acesso.objects.all()
-    return render(request, 'acessos_list.html', {'acessos': acessos})
+    acessos = Acesso.objects.all().order_by('dsArea')
+    areas = Area.objects.all().order_by('dsArea')
+    return render(request, 'acessos_list.html', {'acessos': acessos, 'areas':areas})
 
 
 @login_required
@@ -41,6 +42,7 @@ def acessos_edit(request, id):
     return render(request, 'acessos_form.html', {'form': form})
 
 
+@login_required
 def lista_areas(request, id):
     area = get_object_or_404(Area, pk=id)
     acessos = Acesso.objects.filter(dsArea=area)

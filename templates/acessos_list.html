@@ -1,15 +1,30 @@
 {% extends 'base.html' %}
-
 {% block title %}
 Lista de acessos
 {% endblock %}
 
 {% block navbar%}
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'acessos_list'%}">Lista de Acessos</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'acessos_list'%}">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{% url 'acessos_new'%}">Novo Relatório</a>
+        <a class="nav-link" href="{% url 'admin:index'%}">Gerenciar Acessos</a>
+    </li>
+    <li class="nav-item">
+        <div class="dropdown">
+            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Relatório por Área
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                {% for area in areas %}
+                    <a  href="{% url 'lista_areas' area.id %}">
+                        <button class="dropdown-item" type="button">{{area.dsArea}}</button>
+                    </a>
+                        
+                {% endfor %}
+            </div>
+        </div>
     </li>
     <!-- <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -17,30 +32,44 @@ Lista de acessos
 {% endblock %}
 
 {% block main %}  
-<div class="p-5 rounded">
+<div class="rounded">
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Matrícula</th>
+                <th scope="col">Área - Matrícula</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Acessos</th>
+                <th scope="col">Acessos Sistemas Internos</th>
+                <th scope="col">Acessos Sistemas Externos</th>
+                <th scope="col">Acessos Pastas de rede</th>
                 <th scope="col">Data de alteração</th>
-                <th scope="col">Editar</th>
+                <!-- <th scope="col">Editar</th> -->
             </tr>
         </thead>
         <tbody>
             {% for acesso in acessos %}
             <tr>
-                <th scope="row">{{acesso.dsMatricula}}</td>
+                <th scope="row">{{acesso.dsArea}}<br>{{acesso.dsMatricula}}</td>
                 <td>{{acesso.dsUsuario}}</td>
                 <td>
-                    {% for sistema in acesso.get_access_html%}
+                    {% for sistema in acesso.get_si_html%}
                         {{sistema.dsNome}} <br>
                     {% endfor %}
                     <!-- {{acesso.get_access_html}} -->
                 </td>
+                <td>
+                    {% for sistema in acesso.get_se_html%}
+                    {{sistema.dsNome}} <br>
+                    {% endfor %}
+                    <!-- {{acesso.get_access_html}} -->
+                </td>
+                <td>
+                    {% for sistema in acesso.get_folders_html%}
+                    {{sistema.dsCaminho}} <br>
+                    {% endfor %}
+                    <!-- {{acesso.get_access_html}} -->
+                </td>
                 <td>{{acesso.dtUpdate}}</td>
-                <td><a href="{% url 'acessos_edit' acesso.id %}" class="btn btn-primary" role="button">Editar</a></td>
+                <!-- <td><a href="{% url 'acessos_edit' acesso.id %}" class="btn btn-primary" role="button">Editar</a></td> -->
             </tr>
             {% endfor %}
         </tbody>

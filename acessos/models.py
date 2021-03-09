@@ -48,8 +48,14 @@ class Acesso(models.Model):
     def get_access(self):
         return "\n".join([p.dsNome for p in self.dsSistema.all()])
 
-    def get_access_html(self):
+    def get_si_html(self):
         return list(self.dsSistema.all())
+    
+    def get_se_html(self):
+        return list(self.dsSistemaExterno.all())
+    
+    def get_folders_html(self):
+        return list(self.dsRede.all())
 
     def get_absolute_url(self):
         return reverse('acessos', args=[str(self.dsMatricula)])
