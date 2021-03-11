@@ -1,51 +1,47 @@
-{% extends 'base.html' %}
+{% extends 'admin/base_site.html' %}
 
-{% block title %}
-Lista de acessos
+{% block content_title %}
+<h1>Lista de acessos por Área : <b>{{acessos.0.dsArea}}</b></h1>
 {% endblock %}
 
-{% block navbar%}
-<li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="{% url 'acessos_list'%}">Lista de Acessos</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="{% url 'acessos_new'%}">Novo Relatório</a>
-</li>
-<!-- <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li> -->
-{% endblock %}
-
-{% block main %}
-<div class="p-5 rounded">
-    <table class="table">
-        <thead>
+{% block content %}
+<fieldset class="module grp-module ">
+    <table class="table table-hover rounded">
+        <thead class="thead-dark rounded">
             <tr>
+                <th scope="col">Área</th>
                 <th scope="col">Matrícula</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Acessos</th>
+                <th scope="col"># Sistemas Internos</th>
+                <th scope="col"># Sistemas Externos</th>
+                <th scope="col"># Pastas de rede</th>
                 <th scope="col">Data de alteração</th>
-                <th scope="col">Editar</th>
+                <th scope="col">Visualizar</th>
             </tr>
         </thead>
         <tbody>
             {% for acesso in acessos %}
             <tr>
-                <th scope="row">{{acesso.dsMatricula}}</td>
+                <th scope="row">{{acesso.dsArea}}</td>
+                <td>{{acesso.dsMatricula}}</td>
                 <td>{{acesso.dsUsuario}}</td>
                 <td>
-                    {% for sistema in acesso.get_access_html%}
-                    {{sistema.dsNome}} <br>
-                    {% endfor %}
-                    <!-- {{acesso.get_access_html}} -->
+                    {{ acesso.get_si_html|length}}
+                </td>
+                <td>
+                    {{ acesso.get_se_html|length }}
+                </td>
+                <td>
+                    {{acesso.get_folders_html|length}}
                 </td>
                 <td>{{acesso.dtUpdate}}</td>
-                <td><a href="{% url 'acessos_edit' acesso.id %}" class="btn btn-primary" role="button">Editar</a></td>
+                <td>
+                    <a href="{% url 'admin:acessos_acesso_change' acesso.id%}" class="btn btn-primary" role="button"><i
+                            class="fas fa-search"></i></a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
-
-
     </table>
-</div>
+</fieldset>
 {% endblock %}

@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['.ngrok.io', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'grappelli',
+    #'bootstrap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'acessos.apps.AcessosConfig',
     'bootstrapform',
+    'fontawesome-free',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +146,5 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 GRAPPELLI_ADMIN_TITLE = "Gestor de Acessos - MIS"
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/acessos/'
+
+

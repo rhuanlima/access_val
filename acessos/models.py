@@ -2,8 +2,23 @@ import uuid # Required for unique book instances
 from django.urls import reverse # Used to generate URLs by reversing the URL patterns
 from django.db import models
 
+
+class UpperCaseCharField(models.Field):
+    def __init__(self, *args, **kwargs):
+        super(UpperCaseCharField, self).__init__(*args, **kwargs)
+
+    def pre_save(self, model_instance, add):
+        value = getattr(model_instance, self.attname, None)
+        if value:
+            value = value.upper()
+            setattr(model_instance, self.attname, value)
+            return value
+        else:
+            return super(UpperCaseCharField, self).pre_save(model_instance, add)
+
+
 class Sistema(models.Model):
-    dsNome = models.CharField('Nome do Sistema:',
+    dsNome = UpperCaseCharField('Nome do Sistema:',
         max_length=100, help_text='Insira um sistema aqui .. (ex: SAP HANA)', unique = True)
     dsObs = models.CharField('Observações sobre os Acessos:',
                              help_text='Informações sobre como cancelar/solicitar o acesso', max_length=500, null=True)
@@ -12,7 +27,7 @@ class Sistema(models.Model):
 
 
 class SistemaExterno(models.Model):
-    dsNome = models.CharField('Nome do Sistema Exteno:',
+    dsNome = UpperCaseCharField('Nome do Sistema Exteno:',
         max_length=100, help_text='Insira um sistema aqui .. (ex: SAP HANA)', unique=True)
     dsLink = models.CharField('Link de acesso:',
         max_length=200, help_text='Http://...', unique=True)
