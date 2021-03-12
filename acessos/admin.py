@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib import admin
 from acessos.models import Sistema, Acesso, Area, Rede, SistemaExterno
@@ -43,3 +44,11 @@ class AcessoAdmin(admin.ModelAdmin):
         }),
     )
     filter_horizontal = ['dsSistema', 'dsSistemaExterno', 'dsRede']
+
+    def response_add(self, request, obj, post_url_continue=None):
+        return redirect('/acessos/list')
+
+    def response_change(self, request, obj):
+        return redirect('/acessos/list')
+
+

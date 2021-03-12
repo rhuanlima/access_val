@@ -1,4 +1,5 @@
 {% extends 'admin/base.html' %}
+{% load i18n static %}
 {% load static %}
 {% block extrastyle %}
 <meta charset="UTF-8">
@@ -60,4 +61,28 @@
         Desenvolvido por Rhuan Lima <br>
         <i class="fab fa-python fa-2x"></i><i class="fab fa-html5 fa-2x"></i><i class="fab fa-linux fa-2x"></i><i class="fab fa-docker fa-2x"></i>
     </p>
+{% endblock %}
+
+{% block usertools %}
+{% if has_permission %}
+<div id="user-tools">
+
+    {% translate 'Welcome,' %}
+    <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+
+
+
+    {% if user.is_active and user.is_staff %}
+    {% url 'django-admindocs-docroot' as docsroot %}
+    {% if docsroot %}
+    <a href="{{ docsroot }}">{% translate 'Documentation' %}</a> /
+    {% endif %}
+    {% endif %}
+    {% if user.has_usable_password %}
+    <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
+    {% endif %}
+    <a href="{% url 'admin:logout' %}">{% translate 'Log out' %}</a>
+    
+</div>
+{% endif %}
 {% endblock %}

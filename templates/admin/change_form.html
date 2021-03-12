@@ -1,5 +1,6 @@
 
 {% extends "admin/change_form.html" %}
+{% load i18n static %}
 {% load static %}
 {% block extrastyle %}
 <meta charset="UTF-8">
@@ -58,9 +59,13 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 <div id="footer">
-    <p class="text-center">
+    <!-- <p class="text-center">
         Desenvolvido por Rhuan Lima <br>
         <i class="fab fa-python fa-2x"></i><i class="fab fa-html5 fa-2x"></i><i class="fab fa-linux fa-2x"></i><i
             class="fab fa-docker fa-2x"></i>
-    </p>
+    </p> -->
 </div>{% endblock %}
+
+    {% block object-tools-items %}
+
+    {% endblock %}
