@@ -1,0 +1,40 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content_title %}
+<h1>Selecione a area:</h1>
+{% endblock %}
+
+{% block content %}
+<fieldset class="module grp-module ">
+
+    <table class="table table-hover rounded">
+        <thead class="thead-dark rounded">
+            <tr>
+                <th scope="col">Área</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody> 
+            {% for area in areas %}
+            <tr>
+                <th scope="row">
+                    <p class="h3">
+                        {{area.dsArea}}
+                    </p>
+                </td>
+                <td>
+                        Coordenador: {{area.dsCoordenador}}<br>
+                        KeyUser: {{area.dsKeyUser}}
+                </td>
+                <td>
+                    <a href="{% url 'lista_areas' area.id %}" class="btn btn-primary" role="button"><i
+                            class="fas fa-search"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</fieldset>
+{% endblock %}

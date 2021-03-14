@@ -47,3 +47,9 @@ def lista_areas(request, id):
     area = get_object_or_404(Area, pk=id)
     acessos = Acesso.objects.filter(dsArea=area)
     return render(request, 'lista_areas.html', {'acessos': acessos})
+
+
+@login_required
+def all_areas(request):
+    areas = Area.objects.all().order_by('dsArea')
+    return render(request, 'all_areas.html', {'areas': areas})

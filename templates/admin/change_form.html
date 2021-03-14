@@ -2,70 +2,28 @@
 {% extends "admin/change_form.html" %}
 {% load i18n static %}
 {% load static %}
-{% block extrastyle %}
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link href="{% static 'fontawesome_free/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'fontawesome_free/css/brands.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'fontawesome_free/css/solid.css' %}" rel="stylesheet" type="text/css">
-{% endblock %}
+
 
 {% block breadcrumbs%}
 <div class="breadcrumbs">
     <nav class="navbar navbar-expand-md">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'acessos_list'%}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin:acessos_acesso_add'%}">Cadastrar Novo</a>
-                    </li>
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenu2"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Relatório por Área
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                {% for area in areas %}
-                                <a href="{% url 'lista_areas' area.id %}">
-                                    <button class="dropdown-item" type="button">{{area.dsArea}}</button>
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a class="nav-link active btn btn-outline-secondary btn-lg" aria-current="page" href="{% url 'acessos_list'%}">Home</a>
             </div>
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                <a class="nav-link btn btn-outline-secondary btn-lg" href="{% url 'admin:acessos_acesso_add'%}">Cadastrar Novo</a>
+            </div>
+            <div class="btn-group" role="group" aria-label="Third group">
+                <a class="nav-link btn btn-outline-secondary btn-lg" href="{% url 'all_areas'%}">Areas</a>
+            </div>
+        </div>
     </nav>
 </div>
+
+
 <!-- <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li> -->
 {% endblock %}
 
-
-{% block after_field_sets %}<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-<div id="footer">
-    <!-- <p class="text-center">
-        Desenvolvido por Rhuan Lima <br>
-        <i class="fab fa-python fa-2x"></i><i class="fab fa-html5 fa-2x"></i><i class="fab fa-linux fa-2x"></i><i
-            class="fab fa-docker fa-2x"></i>
-    </p> -->
-</div>{% endblock %}
-
-    {% block object-tools-items %}
-
-    {% endblock %}
